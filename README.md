@@ -20,3 +20,10 @@ terraform plan 을 하면 - aws_security_group.ssh-access: Refreshing state... [
 3. 테라폼 apply를 하면 1.6이 설치된 인스턴스가 유지 됨을 기대 한다. 하지만 1.7이 설치 되어 있다.
 
 4. 이런 경우 테라폼으로 해당 인스턴스를 교체 하려고 하는 경우에 사용된다.
+
+
+# import main.tf -> 여기에 먼저 비어 있는 리소스를 만든다.
+
+resource "aws_instance" "webserver" { # } terraform init terraform import aws_instance.webserver i-083aa408472e649b6
+
+terraform state show aws_instance.webserver 출력된 데이터를 resource에 넣고 플랜으로 싱크를 맞춘다.
